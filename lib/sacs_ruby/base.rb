@@ -15,7 +15,7 @@ module SacsRuby
     def get
       validate!(opts)
       response = SacsRuby.client.get(request_params)
-      @results = JSON.load(response)
+      @results = JSON.load(ActiveSupport::Gzip.decompress(response))
     end
 
     def valid?

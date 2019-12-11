@@ -4,7 +4,7 @@ module SacsRuby
     def get
       validate!(opts)
       response = SacsRuby.client.post(request_params)
-      @results = JSON.load(response)
+      @results = JSON.load(ActiveSupport::Gzip.decompress(response))
     end
 
     def url
